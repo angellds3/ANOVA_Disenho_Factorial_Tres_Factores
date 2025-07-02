@@ -1,0 +1,610 @@
+---
+title: 'Ejemplo de aplicación en R: Diseño Factorial con tres factores'
+author: "Felipe Neira Rojas & Angel Llanos Herrera"
+date: "04-07-2025"
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    toc: yes 
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = FALSE, message=" ", warning = FALSE)
+```
+
+# Ejercicio: Crecimiento de cultivo de maravilla
+
+La empresa "Agrícola del Maule" desea evaluar el crecimiento de un nuevo cultivo de \textbf{Maravillas}, midiendo su crecimiento mensual en milímetros como variable de respuesta. Para este estudio se han considerado tres factores experimentales:
+
+-   **Dosis de fertilizante**, con tres niveles: alta (A1), media (A2) y baja (A3).
+-   **Tipo de riego**, con dos niveles: goteo (B1) y aspersión (B2).
+-   **Cobertura de suelo**, con dos niveles: con mulch (C1) y sin mulch (C2).
+
+A continuación, se presentan los valores correspondientes a cada combinación de tratamientos para su análisis:
+
+| C   | Rép | A1  | A2  | A3  |
+|-----|-----|-----|-----|-----|
+| B1  | B2  | B1  | B2  | B1  |
+|     |     | 1   | 2   | 3   |
+| C1  | 1   | 60  | 75  | 75  |
+| C1  | 2   | 86  | 70  | 70  |
+| C2  | 1   | 55  | 53  | 53  |
+| C2  | 2   | 55  | 55  | 55  |
+
+: Datos del ejercicio factorial con 3 factores
+
+# Datos del ejercicio
+
+```{r}
+# 1) Definimos el diseño completo con expand.grid()
+datos <- expand.grid(
+  subrep = 1:3,                         # subréplicas dentro de cada combinación A×B
+  B      = factor(c("B1", "B2")),       # factor B (2 niveles)
+  A      = factor(c("A1", "A2", "A3")), # factor A (3 niveles)
+  rep    = 1:2,                         # réplicas de C (2 réplicas)
+  C      = factor(c("C1", "C2"))        # factor C (2 niveles)
+)
+
+# 2) Reordenamos filas para que queden en el orden de la tabla original:
+datos <- datos[order(datos$C, datos$rep, datos$A, datos$B, datos$subrep), ]
+
+# 3) Añadimos el vector de respuestas (4 filas × 18 valores = 72)
+datos$respuesta <- c(
+  # C1, réplica 1
+   60, 75, 75,  67, 73, 73,  62, 68, 65,  71, 80, 80,  76, 71, 75,  75, 75, 75,
+  # C1, réplica 2
+   86, 70, 70,  67, 68, 68,  76, 65, 65,  72, 80, 80,  70, 68, 73,  75, 75, 77,
+  # C2, réplica 1
+   55, 53, 53,  52, 52, 57,  44, 44, 45,  60, 60, 60,  52, 51, 50,  56, 55, 57,
+  # C2, réplica 2
+   55, 55, 55,  52, 54, 54,  48, 48, 45,  67, 67, 65,  52, 48, 54,  59, 50, 55
+)
+
+head(datos, 10)
+dim(datos)  # debería ser 72 filas × 6 columnas
+
+```
+
+# Identificación UE, y todo eso
+
+-   **Unidad Experimental:** Cultivo de Maravilla de una parcela.
+
+-   **Factores, niveles y observaciones:**
+
+    | **Símbolo** | **Factor** | **Niveles** | **Descripción de niveles** |
+    |------------------|------------------|------------------|------------------|
+    | A | Dosis de fertilizante | A1, A2, A3 | A1 = Alta, A2 = Media, A3 = Baja |
+    | B | Tipo de riego | B1, B2 | B1 = Goteo, B2 = Aspersión |
+    | C | Cobertura de suelo | C1, C2 | C1 = Con mulch, C2 = Sin mulch |
+
+-   **Número de combinaciones de tratamiento:** 3 × 2 × 2 = 12\
+
+-   **Réplicas por combinación:** n = 6 (independientes)\
+
+-   **Observaciones totales:** N = 12 × 6 = 72
+
+# Modelo a utilizar: Diseño factorial con tres factores
+
+En base al caso anterior, deseamos estudiar si existen diferencias entre los niveles de los distintos factores mencionados anteriormente y sus interacciones, por lo que planteamos un modelo ANOVA de 3 factores:
+
+$$
+y_{ijkl} = \mu
+            + \alpha_i
+            + \beta_j
+            + \gamma_k
+            + (\alpha\beta)_{ij}
+            + (\alpha\gamma)_{ik}
+            + (\beta\gamma)_{jk}
+            + (\alpha\beta\gamma)_{ijk}
+            + \varepsilon_{ijkl},
+$$
+
+donde:
+
+-   $i = 1,2,3$ (A1, A2, A3)\
+-   $j = 1,2$ (B1, B2)\
+-   $k = 1,2$ (C1, C2)\
+-   $l = 1,\dots,3$ (réplicas)
+
+**Definiciones:**
+
+-   $y_{ijkl}$: Crecimiento en milímetros del $l$-ésimo cultivo de maravilla bajo la $i$-ésima dosis de fertilizante, con el $j$-ésimo tipo de riego, utilizando la $k$-ésima cobertura de suelo. \vspace{0.2cm}
+
+-   $\mu$: Media global del crecimiento de maravillas.\
+
+-   $\alpha_i$: Efecto de la $i$-ésima dosis de fertilizante.\
+
+-   $\beta_j$: Efecto del $j$-ésimo tipo de riego.\
+
+-   $\gamma_k$: Efecto de la $k$-ésima cobertura de suelo.\
+
+-   $(\alpha\beta)_{ij}$: Interacción dosis de fertilizante $i$ y tipo de riego $j$.\
+
+-   $(\alpha\gamma)_{ik}$: Interacción dosis de fertilizante $i$ y cobertura de suelo $k$.\
+
+-   $(\beta\gamma)_{jk}$: Interacción tipo de riego $j$ y cobertura de suelo $k$.\
+
+-   $(\alpha\beta\gamma)_{ijk}$: Interacción triple entre dosis de fertilizante $i$, riego $j$ y cobertura $k$.\
+
+-   $\varepsilon_{ijkl}$: Error experimental en milímetros del $l$-ésimo cultivo de maravilla bajo la combinación $(i,j,k)\,$.
+
+\vspace{0.3cm}
+
+Con las siguientes hipótesis a contrastar: \vspace{0.2cm}
+
+| **Efecto** | **Hipótesis nula (**$H_0$) | **Hipótesis alternativa (**$H_1$) |
+|------------------------|------------------------|------------------------|
+| **Dosis de fertilizante (A)** | $\alpha_1 = \alpha_2 = \alpha_3 = 0$ | Para al menos un $i\in\{1,2,3\}$, $\alpha_i \neq 0$ |
+| **Tipo de riego (B)** | $\beta_1 = \beta_2 = 0$ | Para al menos un $j\in\{1,2\}$, $\beta_j \neq 0$ |
+| **Cobertura de suelo (C)** | $\gamma_1 = \gamma_2 = 0$ | Para al menos un $k\in\{1,2\}$, $\gamma_k \neq 0$ |
+| **Interacción** $A\times B$ | $(\alpha\beta)_{ij} = 0\quad\forall\,i,j$ | Para al menos un par $(i,j)$, $(\alpha\beta)_{ij} \neq 0$ |
+| **Interacción** $A\times C$ | $(\alpha\gamma)_{ik} = 0\quad\forall\,i,k$ | Para al menos un par $(i,k)$, $(\alpha\gamma)_{ik} \neq 0$ |
+| **Interacción** $B\times C$ | $(\beta\gamma)_{jk} = 0\quad\forall\,j,k$ | Para al menos un par $(j,k)$, $(\beta\gamma)_{jk} \neq 0$ |
+| **Interacción triple** $A\times B\times C$ | $(\alpha\beta\gamma)_{ijk} = 0\quad\forall\,i,j,k$ | Para al menos un triplete $(i,j,k)$, $(\alpha\beta\gamma)_{ijk} \neq 0$ |
+
+
+Con las siguientes condiciones de estimabilidad para todo valor de i, j, k.
+
+$$
+\sum_{i=1}^{a}\alpha_i = 0,\quad
+\sum_{j=1}^{b}\beta_j = 0,\quad
+\sum_{k=1}^{c}\gamma_k = 0,
+$$
+
+$$
+\sum_{i=1}^{a}\sum_{j=1}^{b}(\alpha\beta)_{ij}=0\quad\forall\,i,
+$$
+
+$$
+\sum_{i=1}^{a}\sum_{k=1}^{c}(\alpha\gamma)_{ik}=0,\quad
+\sum_{j=1}^{b}\sum_{k=1}^{c}(\beta\gamma)_{jk}=0,
+$$
+
+$$
+\sum_{i=1}^{a}\sum_{j=1}^{b}\sum_{k=1}^{c}(\alpha\beta\gamma)_{ijk}=0.
+$$
+
+
+Y los siguientes supuestos.
+
+$$
+\varepsilon_{ijkl} \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\sigma^2)
+$$
+
+1. **Independencia**: las unidades experimentales han sido aleatorizadas.  
+2. **Normalidad**: los errores $\varepsilon_{ijkl}$ siguen una distribución normal.  
+3. **Homocedasticidad**: varianza constante $\displaystyle \mathrm{Var}(\varepsilon_{ijkl}) = \sigma^2$ para todas las observaciones.  
+
+
+
+# Análisis exploratorio breve
+
+Mostramos boxplot y gráficos de interacción, los cuales son útiles para tres factores.
+
+```{r}
+# Carga la librería plotly
+library(plotly)
+
+# Genera un boxplot interactivo con colores distintos para cada nivel de A
+fig <- plot_ly(
+  data   = datos,
+  x      = ~A,
+  y      = ~respuesta,
+  type   = "box",
+  color  = ~A,
+  colors = c("skyblue", "salmon", "lightgreen")
+) %>%
+  layout(
+    title = "Boxplot para crecimiento de cultivo de maravillas por dosis de fertilizante",
+    xaxis = list(title = "Dosis de fertilizante"),
+    yaxis = list(title = "Crecimiento de cultivo de maravillas (mm)")
+  )
+
+fig
+
+```
+
+Nos podemos dar cuenta que la mediana del nivel alto en dosis de fertilizante (58.5 mm) es la menor entre las dosis de fertilizante medio (65 mm) y bajo (63.5 mm). Pudiendo sugerir que un exceso en la dosis de fertilizante puede ser perjudicial para el crecimiento de los cultivos de maravilla. Sin embargo, el crecimiento de cultivos de maravilla alcanza el máximo en la dosis de fertilizante alto (86 mm) aunque valores altos de crecimiento con dosis alta son menos comunes.
+
+-   El 50% de las observaciones de crecimiento de cultivo de maravillas con dosis de fertilizante alta se encuentra entre 54 mm y 70 mm.
+
+-   El 50% de las observaciones de crecimiento de cultivo de maravillas con dosis de fertilizante media se encuentra entre 54 mm y 71.5 mm.
+
+-   El 50% de las observaciones de crecimiento de cultivo de maravillas con dosis de fertilizante baja se encuentra entre 53 mm y 75 mm.
+
+Es por esto, que se propone que los crecimientos de cultivo de maravilla máximos en dosis de fertilizante alta son menos usuales.
+
+```{r}
+# Carga la librería plotly
+library(plotly)
+
+# Genera un boxplot interactivo con colores distintos para cada nivel de A
+fig <- plot_ly(
+  data   = datos,
+  x      = ~B,
+  y      = ~respuesta,
+  type   = "box",
+  color  = ~B,
+  colors = c("skyblue", "salmon", "lightgreen")
+) %>%
+  layout(
+    title = "Boxplot para crecimiento de cultivo de maravillas por tipo de riego",
+    xaxis = list(title = "Tipo de riego"),
+    yaxis = list(title = "Crecimiento de cultivo de maravillas (mm)")
+  )
+
+fig
+
+```
+
+Ahora, viendo el crecimiento de los cultivos de maravilla por tipo de riego, podemos notar que riego por goteo mantiene crecimientos entre 44 mm y 86 mm en los cultivos de maravilla. En cambio, riego por aspersión mantiene entre 50 mm y 80 mm en los cultivos. La mediana en tipo de riego por goteo es mucho menor (57.5 mm) que tipo de riego por aspersión (67 mm). Donde, cerca del 75% de crecimientos en riego por aspersión son mayores al 50% del crecimiento de cultivo de maravilla en riego por goteo.
+
+```{r}
+
+# Carga la librería plotly
+library(plotly)
+
+# Genera un boxplot interactivo con colores distintos para cada nivel de A
+fig <- plot_ly(
+  data   = datos,
+  x      = ~C,
+  y      = ~respuesta,
+  type   = "box",
+  color  = ~C,
+  colors = c("skyblue", "salmon", "lightgreen")
+) %>%
+  layout(
+    title = "Boxplot para crecimiento de cultivo de maravillas por cobertura de suelo",
+    xaxis = list(title = "Cobertura de suelo"),
+    yaxis = list(title = "Crecimiento de cultivo de maravillas (mm)")
+  )
+
+fig
+
+```
+
+En este caso, para crecimiento de cultivo de maravillas por cobertura de suelo se logra notar una clara diferencia. Donde por cobertura con mulch el crecimiento de los cultivos de maravillas se encuentran entre 60 mm y 86 mm. En cambio, por cobertura sin mulch entre 44 mm y 67 mm. El 100% de las observaciones de crecimiento con suelo con mulch es superior al menos al 75% de las observaciones de crecimiento con suelo sin mulch. Ambas coberturas de suelo mantienen un dato atípico hacia crecimientos más elevados, en suelo con mulch sería el máximo en 86 mm, y en suelo sin mulch el máximo en 67 mm.
+
+```{r}
+# Carga las librerías necesarias
+library(dplyr)
+library(plotly)
+
+# 1. Calcula la media de la respuesta para cada combinación de A y B
+df_mean <- datos %>%
+  group_by(B, A) %>%
+  summarise(mean_resp = mean(respuesta), .groups="drop")
+
+# 2. Crea el gráfico de interacción con plotly
+fig <- plot_ly(
+  data = df_mean,
+  x = ~B,
+  y = ~mean_resp,
+  color = ~A,
+  colors = c("blue", "red", "green"),
+  type = "scatter",
+  mode = "lines+markers"
+) %>%
+  layout(
+    title = "Gráfico de interacción: dosis de fertilizante × tipo de riego",
+    xaxis = list(title = "Tipo de riego (B)"),
+    yaxis = list(title = "Media de crecimiento (mm)"),
+    legend = list(title = list(text = "Dosis (A)"))
+  )
+
+# 3. Muestra el gráfico
+fig
+```
+
+En cuanto a las interacciones entre factores, viendo el tipo de riego con la dosis de fertilizante, podemos ver la posible existencia de interacción al haber cruces en el promedio de crecimiento de cultivo de maravillas de las interacciones.
+
+```{r}
+# Carga las librerías necesarias
+library(dplyr)
+library(plotly)
+
+# 1. Calcula la media de la respuesta para cada combinación de B y C
+df_meanBC <- datos %>%
+  group_by(B, C) %>%
+  summarise(mean_resp = mean(respuesta), .groups = "drop")
+
+# 2. Crea el gráfico de interacción con plotly
+fig <- plot_ly(
+  data   = df_meanBC,
+  x      = ~B,
+  y      = ~mean_resp,
+  color  = ~C,
+  colors = c("orange", "purple"),
+  type   = "scatter",
+  mode   = "lines+markers"
+) %>%
+  layout(
+    title  = "Gráfico de interacción: tipo de riego × cobertura de suelo",
+    xaxis  = list(title = "Tipo de riego (B)"),
+    yaxis  = list(title = "Media de crecimiento (mm)"),
+    legend = list(title = list(text = "Cobertura (C)"))
+  )
+
+# 3. Muestra el gráfico
+fig
+
+```
+
+En el caso de interacciones entre tipo de riego y cobertura de suelo no se logra notar una posible interacción entre ellos. Sin embargo, sí se puede notar la posible diferencia entre coberturas de suelo en el crecimiento promedio de cultivo de maravillas.
+
+```{r}
+# Carga las librerías necesarias
+library(dplyr)
+library(plotly)
+
+# 1. Calcula la media de la respuesta para cada combinación de A y C
+df_meanAC <- datos %>%
+  group_by(A, C) %>%
+  summarise(mean_resp = mean(respuesta), .groups = "drop")
+
+# 2. Crea el gráfico de interacción con plotly
+fig <- plot_ly(
+  data   = df_meanAC,
+  x      = ~A,
+  y      = ~mean_resp,
+  color  = ~C,
+  colors = c("orange", "purple"),
+  type   = "scatter",
+  mode   = "lines+markers"
+) %>%
+  layout(
+    title  = "Gráfico de interacción: dosis de fertilizante × cobertura de suelo",
+    xaxis  = list(title = "Dosis de fertilizante (A)"),
+    yaxis  = list(title = "Media de crecimiento (mm)"),
+    legend = list(title = list(text = "Cobertura (C)"))
+  )
+
+# 3. Muestra el gráfico
+fig
+```
+
+Ahora, viendo la dosis de fertilizante por cobertura de suelo, tampoco se logra notar una posible interacción entre ellos. Sin embargo, al igual que el caso anterior, sí se logra notar una posible diferencia entre coberturas de suelo.
+
+# Ajuste del modelo de tres factores
+
+```{r}
+# 1. Asegúrate de que 'datos' tiene las variables como factores
+datos$A <- factor(datos$A)
+datos$B <- factor(datos$B)
+datos$C <- factor(datos$C)
+
+# 2. Ajuste del modelo ANOVA de tres factores (sin término de bloque)
+modelo_tres_factores <- aov(respuesta ~ A * B * C, data = datos)
+
+# 3. Resumen de la ANOVA
+summary(modelo_tres_factores)
+```
+
+Viendo la tabla ANOVA podemos notar que con un nivel de significación del 0.05 no se rechaza la hipótesis nula para algunos. Es decir, hay suficiente evidencia muestral a favor de que los efectos en promedio
+
+-   de las dosis de fertilizantes (A) sobre el crecimiento de los cultivos de maravillas son iguales.
+
+-   de la interacción entre tipo de riego (B) y cobertura de suelo (C) sobre el crecimiento de los cultivos de maravillas son iguales.
+
+-   de la interacción entre tipo de riego (B), cobertura de suelo (C) y dosis de fertilizantes (A) sobre el crecimiento de los cultivos de maravillas son iguales.
+
+Por otro lado, con un nivel de significación del 0.05 se rechaza la hipótesis nula de los restantes. Es decir, hay suficiente evidencia muestral a favor de que los efectos en promedio
+
+-   al menos uno de los tipos de riego (B) sobre el crecimiento de los cultivos de maravillas es distinto.
+
+-   al menos una de las coberturas de suelo (C) sobre el crecimiento de los cultivos de maravillas es distinta.
+
+-   al menos una de las interacciones entre dosis de fertilizante (A) y tipo de riego (B) sobre el crecimiento de los cultivos de maravillas es distinta.
+
+-   al menos una de las interacciones entre tipo de riego (B) y cobertura de suelo (C) sobre el crecimiento de los cultivos de maravillas es distinta.
+
+# Supuestos del modelo
+
+## Normalidad en los residuos
+
+Comprobaremos este supuesto mediante la prueba de normalidad de Shapiro-Wilk adecuado para muestras pequeñas, como es el caso.
+
+$H_0:$ Los residuos del modelo definido provienen desde una distribución normal.
+
+vs.
+
+$H_1:$ Los residuos del modelo definido no provienen desde una distribución normal.
+
+```{r}
+res <- residuals(modelo_tres_factores)
+
+
+# Test de Shapiro–Wilk para normalidad de los residuos
+shapiro.test(res)
+```
+
+Con un nivel de significación del 0.05 se rechaza la hipótesis nula de normalidad. Es decir, existe suficiente evidencia muestral para afirmar que los residuos del modelo definido no provienen desde una distribución normal. No cumpliendo con el supuesto necesario para el modelo (se supondrá como supuesto cumplido para efectos de la realización del ejemplo).
+
+## Homogeneidad de varianzas en los residuos
+
+Comprobaremos este supuesto mediante la prueba de homogeneidad de varianzas de Levene el cual es adecuado sin asumir normalidad.
+
+$H_0:$ Las varianzas de los residuos del modelo definido entre las combinaciones, dosis de fertilizante, tipo de riego y cobertura de suelo son iguales.
+
+vs.
+
+$H_1:$ Al menos una varianza de los residuos del modelo definido entre las combinaciones, dosis de fertilizante, tipo de riego y cobertura de suelo es distinta.
+
+```{r}
+library(car)
+
+# Test de Levene usando la mediana (center = median)
+leveneTest(respuesta ~ interaction(A, B, C), data = datos, center = median)
+```
+
+Con un nivel de significación del 0.05 no se rechaza la hipótesis nula. Es decir, existe suficiente evidencia muestral a favor de que las varianzas de los residuos del modelo definido entre las combinaciones, dosis de fertilizante, tipo de riego y cobertura de suelo son iguales.
+
+# Comparaciones multiples
+
+## Comparaciones entre tipos de riego (B)
+
+```{r, results='hide'}
+library(agricolae)
+
+duncan.B <- duncan.test(
+  modelo_tres_factores,
+  trt    = "B",
+  group  = FALSE,
+  console= TRUE, 
+  alpha = 0.05
+)
+
+```
+
+```{r}
+duncan.B$comparison
+```
+
+Con un nivel de significación de 0.05 rechazamos la hipótesis nula. Es decir, existe suficiente evidencia muestral a favor de que el tipo de riego por goteo es menor a tipo de goteo por aspersión en cuanto al crecimiento promedio de los cultivos de maravilla.
+
+## Comparaciones entre coberturas de suelo (C)
+
+```{r, results='hide'}
+# Duncan para C
+duncan.C <- duncan.test(
+  modelo_tres_factores,
+  trt    = "C",
+  group  = FALSE,
+  console= TRUE,
+  alpha = 0.05
+)
+
+```
+
+```{r}
+duncan.C$comparison
+```
+
+Con un nivel de significación de 0.05 rechazamos la hipótesis nula. Es decir, existe suficiente evidencia muestral a favor de que la cobertura de suelo con mulch es mayor a la cobertura de suelo sin mulch en cuanto al crecimiento promedio de los cultivos de maravilla.
+
+## Comparaciones entre interacciones entre dosis de fertilizante (A) y tipos de riego (B)
+
+```{r, results='hide'}
+# Duncan para la interacción A × B
+#    trt = c("A","B") combina niveles de A y B
+
+duncan.AB <- duncan.test(
+  modelo_tres_factores,
+  trt    = c("A","B"),
+  group  = FALSE,
+  console= TRUE,
+  alpha=0.05
+)
+
+```
+
+```{r}
+duncan.AB$comparison
+```
+
+Con un nivel de significación del 0.05 no se rechaza la hipótesis nula. Es decir, existe suficiente evidencia muestral a favor de que en promedio las siguientes interacciones entregan un efecto igual sobre el crecimiento de los cultivos de maravillas.
+
+**Recordando:** Dosis de fertilizante (A1 = Alta, A2 = Media, A3 = Baja), Tipo de riego (B1 = Goteo, B2 = Aspersión)
+
+-   A1:B1 = A1:B2
+
+-   A1:B1 = A3:B1
+
+-   A1:B1 = A3:B2
+
+-   A1:B2 = A3:B1
+
+Con un nivel de significación del 0.05 se rechaza la hipótesis nula. Es decir, existe suficiente evidencia muestral a favor de que en promedio las siguientes interacciones entregan un mayor o menor sobre el crecimiento de los cultivos de maravillas.
+
+-   A1:B1 \> A2:B1
+
+-   A1:B1 \< A2:B2
+
+-   A1:B2 \> A2:B1
+
+-   A1:B2 \< A2:B2
+
+-   A1:B2 \< A3:B2
+
+-   A2:B1 \< A2:B2
+
+-   A2:B1 \< A3:B1
+
+-   A2:B1 \< A3:B2
+
+-   A2:B2 \> A3:B1
+
+-   A2:B2 \> A3:B2
+
+-   A3:B1 \< A3:B2
+
+En conclusión, la interacción mayor en este caso fue dosis de fertilizante media (A2) y tipo de riego por aspersión (B2). Esta combinación ofreciendo el mayor rendimiento en promedio de crecimiento de cultivos de maravilla en cuanto a sus otras interacciones. El que menor rendimiento en crecimiento de cultivos de maravilla fue dosis de fertilizante media (A2) y tipo de riego por goteo (B1).
+
+## Comparaciones entre interacciones entre ripos de riego (B) y coberturas de suelo (C)
+
+```{r, results='hide'}
+# Duncan para la interacción B × C
+#    trt = c("B","C") combina niveles de B y C
+duncan.BC <- duncan.test(modelo_tres_factores, c("B", "C"), group = FALSE, console = TRUE)
+```
+
+```{r}
+duncan.BC$comparison
+```
+
+Con un nivel de significación del 0.05 se rechaza la hipótesis nula. Es decir, existe suficiente evidencia muestral a favor de que en promedio las siguientes interacciones entregan un mayor o menor sobre el crecimiento de los cultivos de maravillas.
+
+**Recordando:** Tipo de riego (B1 = Goteo, B2 = Aspersión), Cobertura de suelo (C1 = Con mulch, C2 = Sin mulch)
+
+-   B1:C1 \> B1:C2
+
+-   B1:C1 \< B2:C1
+
+-   B1:C1 \> B2:C2
+
+-   B1:C2 \< B2:C1
+
+-   B1:C2 \< B2:C2
+
+-   B2:C1 \> B2:C2
+
+En resumen, si ordenamos estas interacciones de mayor a menor en cuanto a crecimiento de cultivo de maravillas, el que mayor crecimiento ofrece en promedio es la combinación tipo de riego por aspersión (B2) y cobertura de suelo con mulch (C1)
+
+seguido en orden por
+
+-   tipo de riego por goteo (B1) y cobertura de suelo con mulch (C1)
+
+-   tipo de riego por aspersión (B2) y cobertura de suelo sin mulch (C2)
+
+-   tipo de riego por goteo (B1) y cobertura de suelo sin mulch (C2) (Siendo esta la que menor crecimiento promedio mantiene en los cultivos de maravilla)
+
+# Conclusiones generales
+
+En general, se hallaron los siguientes resultados con un nivel de significación del 0.05 (suponiendo el cumplimiento de normalidad en los residuos)
+
+- No se encontraron diferencias significativas en los niveles de dosis de fertilizante Alto, Medio y Bajo, lo que sugiere que la cantidad de fertilizante no afecta estadísticamente o consistentemente al crecimiento de los cultivos de maravilla.
+
+- El riego por aspersión (B2) produjo un crecimiento promedio significativamente mayor que el riego por goteo (B1).
+
+- La cobertura de suelo con mulch (C1) mantiene un crecimiento promedio significativo de los cultivos de maravilla superior a la de cobertura de suelo sin mulch.
+
+
+En cuanto a las diferencias entre factores tenemos que,
+
+- Se encontraron diferencias entre dosis de fertilizante (A) y tipo de riego (B) en los crecimientos promedio de cultivos de maravilla. 
+
+- Se encontraron diferencias entre tipo de riego (B) y cobertura de suelo (C) en los crecimientos promedio de cultivos de maravilla. 
+
+Como recomendación para obtener los mejores resultados en el crecimiento de los cultivos de maravilla se recomienda el uso de,
+
+- Tipo de riego por aspersión (B2) antes que riego por goteo (B1).
+
+- Cobertura de suelo con mulch (C1) antes que sin mulch (C2).
+
+Ahora, las mejores combinaciones para el crecimiento de los culticos de maravilla son,
+
+- Tipo de riego por aspersión (B2) y cobertura de suelo con mulch (C1)
+
+- Dosis de fertilizante media (A2) y tipo de riego por aspersión (B2)
+
+
