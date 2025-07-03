@@ -2099,8 +2099,7 @@ Herrera</h4>
 Crecimiento de cultivo de maravilla</a></li>
 <li><a href="#datos-del-ejercicio" id="toc-datos-del-ejercicio">Datos
 del ejercicio</a></li>
-<li><a href="#identificaci%C3%B3n-ue-y-todo-eso" id="toc-identificación-ue-y-todo-eso">Identificación UE, y todo
-eso</a></li>
+<li><a href="#identificaci%C3%B3n" id="toc-identificación">Identificación</a></li>
 <li><a href="#modelo-a-utilizar-dise%C3%B1o-factorial-con-tres-factores" id="toc-modelo-a-utilizar-diseño-factorial-con-tres-factores">Modelo a
 utilizar: Diseño factorial con tres factores</a></li>
 <li><a href="#an%C3%A1lisis-exploratorio-breve" id="toc-análisis-exploratorio-breve">Análisis exploratorio
@@ -2232,22 +2231,22 @@ combinación de tratamientos para su análisis:</p>
 <span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>)</span>
 <span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a></span>
 <span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="fu">head</span>(datos, <span class="dv">10</span>)</span></code></pre></div>
-<pre><code>FALSE    subrep  B  A rep  C respuesta
-FALSE 1       1 B1 A1   1 C1        60
-FALSE 2       2 B1 A1   1 C1        75
-FALSE 3       3 B1 A1   1 C1        75
-FALSE 4       1 B2 A1   1 C1        67
-FALSE 5       2 B2 A1   1 C1        73
-FALSE 6       3 B2 A1   1 C1        73
-FALSE 7       1 B1 A2   1 C1        62
-FALSE 8       2 B1 A2   1 C1        68
-FALSE 9       3 B1 A2   1 C1        65
-FALSE 10      1 B2 A2   1 C1        71</code></pre>
+<pre><code>     subrep  B  A rep  C respuesta
+  1       1 B1 A1   1 C1        60
+  2       2 B1 A1   1 C1        75
+  3       3 B1 A1   1 C1        75
+  4       1 B2 A1   1 C1        67
+  5       2 B2 A1   1 C1        73
+  6       3 B2 A1   1 C1        73
+  7       1 B1 A2   1 C1        62
+  8       2 B1 A2   1 C1        68
+  9       3 B1 A2   1 C1        65
+  10      1 B2 A2   1 C1        71</code></pre>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">dim</span>(datos)  <span class="co"># debería ser 72 filas × 6 columnas</span></span></code></pre></div>
-<pre><code>FALSE [1] 72  6</code></pre>
+<pre><code>  [1] 72  6</code></pre>
 </div>
-<div id="identificación-ue-y-todo-eso" class="section level1">
-<h1>Identificación UE, y todo eso</h1>
+<div id="identificación" class="section level1">
+<h1>Identificación</h1>
 <ul>
 <li><p><strong>Unidad Experimental:</strong> Cultivo de Maravilla de una
 parcela.</p></li>
@@ -2481,8 +2480,8 @@ para tres factores.</p>
 <span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>  )</span>
 <span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a></span>
 <span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>fig</span></code></pre></div>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-896fc799ce3695d33f9f" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-896fc799ce3695d33f9f">{"x":{"visdat":{"25944f226513":["function () ","plotlyVisDat"]},"cur_data":"25944f226513","attrs":{"25944f226513":{"x":{},"y":{},"color":{},"colors":["skyblue","salmon","lightgreen"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Boxplot para crecimiento de cultivo de maravillas por dosis de fertilizante","xaxis":{"domain":[0,1],"automargin":true,"title":"Dosis de fertilizante","type":"category","categoryorder":"array","categoryarray":["A1","A2","A3"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Crecimiento de cultivo de maravillas (mm)"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"fillcolor":"rgba(135,206,235,0.5)","x":["A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1"],"y":[60,75,75,67,73,73,86,70,70,67,68,68,55,53,53,52,52,57,55,55,55,52,54,54],"type":"box","name":"A1","marker":{"color":"rgba(135,206,235,1)","line":{"color":"rgba(135,206,235,1)"}},"line":{"color":"rgba(135,206,235,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(250,128,114,0.5)","x":["A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2"],"y":[62,68,65,71,80,80,76,65,65,72,80,80,44,44,45,60,60,60,48,48,45,67,67,65],"type":"box","name":"A2","marker":{"color":"rgba(250,128,114,1)","line":{"color":"rgba(250,128,114,1)"}},"line":{"color":"rgba(250,128,114,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(144,238,144,0.5)","x":["A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3"],"y":[76,71,75,75,75,75,70,68,73,75,75,77,52,51,50,56,55,57,52,48,54,59,50,55],"type":"box","name":"A3","marker":{"color":"rgba(144,238,144,1)","line":{"color":"rgba(144,238,144,1)"}},"line":{"color":"rgba(144,238,144,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-b91b91c1ed28751fff46" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-b91b91c1ed28751fff46">{"x":{"visdat":{"163c68221775":["function () ","plotlyVisDat"]},"cur_data":"163c68221775","attrs":{"163c68221775":{"x":{},"y":{},"color":{},"colors":["skyblue","salmon","lightgreen"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Boxplot para crecimiento de cultivo de maravillas por dosis de fertilizante","xaxis":{"domain":[0,1],"automargin":true,"title":"Dosis de fertilizante","type":"category","categoryorder":"array","categoryarray":["A1","A2","A3"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Crecimiento de cultivo de maravillas (mm)"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"fillcolor":"rgba(135,206,235,0.5)","x":["A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1","A1"],"y":[60,75,75,67,73,73,86,70,70,67,68,68,55,53,53,52,52,57,55,55,55,52,54,54],"type":"box","name":"A1","marker":{"color":"rgba(135,206,235,1)","line":{"color":"rgba(135,206,235,1)"}},"line":{"color":"rgba(135,206,235,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(250,128,114,0.5)","x":["A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2","A2"],"y":[62,68,65,71,80,80,76,65,65,72,80,80,44,44,45,60,60,60,48,48,45,67,67,65],"type":"box","name":"A2","marker":{"color":"rgba(250,128,114,1)","line":{"color":"rgba(250,128,114,1)"}},"line":{"color":"rgba(250,128,114,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(144,238,144,0.5)","x":["A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3","A3"],"y":[76,71,75,75,75,75,70,68,73,75,75,77,52,51,50,56,55,57,52,48,54,59,50,55],"type":"box","name":"A3","marker":{"color":"rgba(144,238,144,1)","line":{"color":"rgba(144,238,144,1)"}},"line":{"color":"rgba(144,238,144,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p>Nos podemos dar cuenta que la mediana del nivel alto en dosis de
 fertilizante (58.5 mm) es la menor entre las dosis de fertilizante medio
 (65 mm) y bajo (63.5 mm). Pudiendo sugerir que un exceso en la dosis de
@@ -2522,8 +2521,8 @@ maravilla máximos en dosis de fertilizante alta son menos usuales.</p>
 <span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a>  )</span>
 <span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a></span>
 <span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a>fig</span></code></pre></div>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-7638f5c776799be62797" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-7638f5c776799be62797">{"x":{"visdat":{"25947dfb11":["function () ","plotlyVisDat"]},"cur_data":"25947dfb11","attrs":{"25947dfb11":{"x":{},"y":{},"color":{},"colors":["skyblue","salmon","lightgreen"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Boxplot para crecimiento de cultivo de maravillas por tipo de riego","xaxis":{"domain":[0,1],"automargin":true,"title":"Tipo de riego","type":"category","categoryorder":"array","categoryarray":["B1","B2"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Crecimiento de cultivo de maravillas (mm)"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"fillcolor":"rgba(135,206,235,0.5)","x":["B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1"],"y":[60,75,75,62,68,65,76,71,75,86,70,70,76,65,65,70,68,73,55,53,53,44,44,45,52,51,50,55,55,55,48,48,45,52,48,54],"type":"box","name":"B1","marker":{"color":"rgba(135,206,235,1)","line":{"color":"rgba(135,206,235,1)"}},"line":{"color":"rgba(135,206,235,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(144,238,144,0.5)","x":["B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2"],"y":[67,73,73,71,80,80,75,75,75,67,68,68,72,80,80,75,75,77,52,52,57,60,60,60,56,55,57,52,54,54,67,67,65,59,50,55],"type":"box","name":"B2","marker":{"color":"rgba(144,238,144,1)","line":{"color":"rgba(144,238,144,1)"}},"line":{"color":"rgba(144,238,144,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-f196db9e028a11f5af66" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-f196db9e028a11f5af66">{"x":{"visdat":{"163c1bef3a2a":["function () ","plotlyVisDat"]},"cur_data":"163c1bef3a2a","attrs":{"163c1bef3a2a":{"x":{},"y":{},"color":{},"colors":["skyblue","salmon","lightgreen"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Boxplot para crecimiento de cultivo de maravillas por tipo de riego","xaxis":{"domain":[0,1],"automargin":true,"title":"Tipo de riego","type":"category","categoryorder":"array","categoryarray":["B1","B2"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Crecimiento de cultivo de maravillas (mm)"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"fillcolor":"rgba(135,206,235,0.5)","x":["B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1","B1"],"y":[60,75,75,62,68,65,76,71,75,86,70,70,76,65,65,70,68,73,55,53,53,44,44,45,52,51,50,55,55,55,48,48,45,52,48,54],"type":"box","name":"B1","marker":{"color":"rgba(135,206,235,1)","line":{"color":"rgba(135,206,235,1)"}},"line":{"color":"rgba(135,206,235,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(144,238,144,0.5)","x":["B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2","B2"],"y":[67,73,73,71,80,80,75,75,75,67,68,68,72,80,80,75,75,77,52,52,57,60,60,60,56,55,57,52,54,54,67,67,65,59,50,55],"type":"box","name":"B2","marker":{"color":"rgba(144,238,144,1)","line":{"color":"rgba(144,238,144,1)"}},"line":{"color":"rgba(144,238,144,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p>Ahora, viendo el crecimiento de los cultivos de maravilla por tipo de
 riego, podemos notar que riego por goteo mantiene crecimientos entre 44
 mm y 86 mm en los cultivos de maravilla. En cambio, riego por aspersión
@@ -2551,8 +2550,8 @@ goteo.</p>
 <span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>  )</span>
 <span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a></span>
 <span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a>fig</span></code></pre></div>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-7b22ce9b8d50a1db4d71" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-7b22ce9b8d50a1db4d71">{"x":{"visdat":{"259447376362":["function () ","plotlyVisDat"]},"cur_data":"259447376362","attrs":{"259447376362":{"x":{},"y":{},"color":{},"colors":["skyblue","salmon","lightgreen"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Boxplot para crecimiento de cultivo de maravillas por cobertura de suelo","xaxis":{"domain":[0,1],"automargin":true,"title":"Cobertura de suelo","type":"category","categoryorder":"array","categoryarray":["C1","C2"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Crecimiento de cultivo de maravillas (mm)"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"fillcolor":"rgba(135,206,235,0.5)","x":["C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1"],"y":[60,75,75,67,73,73,62,68,65,71,80,80,76,71,75,75,75,75,86,70,70,67,68,68,76,65,65,72,80,80,70,68,73,75,75,77],"type":"box","name":"C1","marker":{"color":"rgba(135,206,235,1)","line":{"color":"rgba(135,206,235,1)"}},"line":{"color":"rgba(135,206,235,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(144,238,144,0.5)","x":["C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2"],"y":[55,53,53,52,52,57,44,44,45,60,60,60,52,51,50,56,55,57,55,55,55,52,54,54,48,48,45,67,67,65,52,48,54,59,50,55],"type":"box","name":"C2","marker":{"color":"rgba(144,238,144,1)","line":{"color":"rgba(144,238,144,1)"}},"line":{"color":"rgba(144,238,144,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-57c7fff65ffa61e9b8e2" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-57c7fff65ffa61e9b8e2">{"x":{"visdat":{"163c6b5d2424":["function () ","plotlyVisDat"]},"cur_data":"163c6b5d2424","attrs":{"163c6b5d2424":{"x":{},"y":{},"color":{},"colors":["skyblue","salmon","lightgreen"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Boxplot para crecimiento de cultivo de maravillas por cobertura de suelo","xaxis":{"domain":[0,1],"automargin":true,"title":"Cobertura de suelo","type":"category","categoryorder":"array","categoryarray":["C1","C2"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Crecimiento de cultivo de maravillas (mm)"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"fillcolor":"rgba(135,206,235,0.5)","x":["C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1","C1"],"y":[60,75,75,67,73,73,62,68,65,71,80,80,76,71,75,75,75,75,86,70,70,67,68,68,76,65,65,72,80,80,70,68,73,75,75,77],"type":"box","name":"C1","marker":{"color":"rgba(135,206,235,1)","line":{"color":"rgba(135,206,235,1)"}},"line":{"color":"rgba(135,206,235,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(144,238,144,0.5)","x":["C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2","C2"],"y":[55,53,53,52,52,57,44,44,45,60,60,60,52,51,50,56,55,57,55,55,55,52,54,54,48,48,45,67,67,65,52,48,54,59,50,55],"type":"box","name":"C2","marker":{"color":"rgba(144,238,144,1)","line":{"color":"rgba(144,238,144,1)"}},"line":{"color":"rgba(144,238,144,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p>En este caso, para crecimiento de cultivo de maravillas por cobertura
 de suelo se logra notar una clara diferencia. Donde por cobertura con
 mulch el crecimiento de los cultivos de maravillas se encuentran entre
@@ -2590,8 +2589,8 @@ y en suelo sin mulch el máximo en 67 mm.</p>
 <span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a></span>
 <span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a><span class="co"># 3. Muestra el gráfico</span></span>
 <span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a>fig</span></code></pre></div>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-9cd8c670280b91ce3ce7" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-9cd8c670280b91ce3ce7">{"x":{"visdat":{"259428b8678d":["function () ","plotlyVisDat"]},"cur_data":"259428b8678d","attrs":{"259428b8678d":{"x":{},"y":{},"mode":"lines+markers","color":{},"colors":["blue","red","green"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Gráfico de interacción: dosis de fertilizante × tipo de riego","xaxis":{"domain":[0,1],"automargin":true,"title":"Tipo de riego (B)","type":"category","categoryorder":"array","categoryarray":["B1","B2"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Media de crecimiento (mm)"},"legend":{"title":{"text":"Dosis (A)"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["B1","B2"],"y":[63.5,61.416666666666664],"mode":"lines+markers","type":"scatter","name":"A1","marker":{"color":"rgba(0,0,255,1)","line":{"color":"rgba(0,0,255,1)"}},"textfont":{"color":"rgba(0,0,255,1)"},"error_y":{"color":"rgba(0,0,255,1)"},"error_x":{"color":"rgba(0,0,255,1)"},"line":{"color":"rgba(0,0,255,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["B1","B2"],"y":[56.25,70.166666666666671],"mode":"lines+markers","type":"scatter","name":"A2","marker":{"color":"rgba(255,0,0,1)","line":{"color":"rgba(255,0,0,1)"}},"textfont":{"color":"rgba(255,0,0,1)"},"error_y":{"color":"rgba(255,0,0,1)"},"error_x":{"color":"rgba(255,0,0,1)"},"line":{"color":"rgba(255,0,0,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["B1","B2"],"y":[61.666666666666664,65.333333333333329],"mode":"lines+markers","type":"scatter","name":"A3","marker":{"color":"rgba(0,255,0,1)","line":{"color":"rgba(0,255,0,1)"}},"textfont":{"color":"rgba(0,255,0,1)"},"error_y":{"color":"rgba(0,255,0,1)"},"error_x":{"color":"rgba(0,255,0,1)"},"line":{"color":"rgba(0,255,0,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-1e27ad9bf4675892e61e" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-1e27ad9bf4675892e61e">{"x":{"visdat":{"163c2d8d1629":["function () ","plotlyVisDat"]},"cur_data":"163c2d8d1629","attrs":{"163c2d8d1629":{"x":{},"y":{},"mode":"lines+markers","color":{},"colors":["blue","red","green"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Gráfico de interacción: dosis de fertilizante × tipo de riego","xaxis":{"domain":[0,1],"automargin":true,"title":"Tipo de riego (B)","type":"category","categoryorder":"array","categoryarray":["B1","B2"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Media de crecimiento (mm)"},"legend":{"title":{"text":"Dosis (A)"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["B1","B2"],"y":[63.5,61.416666666666664],"mode":"lines+markers","type":"scatter","name":"A1","marker":{"color":"rgba(0,0,255,1)","line":{"color":"rgba(0,0,255,1)"}},"textfont":{"color":"rgba(0,0,255,1)"},"error_y":{"color":"rgba(0,0,255,1)"},"error_x":{"color":"rgba(0,0,255,1)"},"line":{"color":"rgba(0,0,255,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["B1","B2"],"y":[56.25,70.166666666666671],"mode":"lines+markers","type":"scatter","name":"A2","marker":{"color":"rgba(255,0,0,1)","line":{"color":"rgba(255,0,0,1)"}},"textfont":{"color":"rgba(255,0,0,1)"},"error_y":{"color":"rgba(255,0,0,1)"},"error_x":{"color":"rgba(255,0,0,1)"},"line":{"color":"rgba(255,0,0,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["B1","B2"],"y":[61.666666666666664,65.333333333333329],"mode":"lines+markers","type":"scatter","name":"A3","marker":{"color":"rgba(0,255,0,1)","line":{"color":"rgba(0,255,0,1)"}},"textfont":{"color":"rgba(0,255,0,1)"},"error_y":{"color":"rgba(0,255,0,1)"},"error_x":{"color":"rgba(0,255,0,1)"},"line":{"color":"rgba(0,255,0,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p>En cuanto a las interacciones entre factores, viendo el tipo de riego
 con la dosis de fertilizante, podemos ver la posible existencia de
 interacción al haber cruces en el promedio de crecimiento de cultivo de
@@ -2624,8 +2623,8 @@ maravillas de las interacciones.</p>
 <span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a></span>
 <span id="cb9-27"><a href="#cb9-27" tabindex="-1"></a><span class="co"># 3. Muestra el gráfico</span></span>
 <span id="cb9-28"><a href="#cb9-28" tabindex="-1"></a>fig</span></code></pre></div>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-126a42bcab1e30738b08" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-126a42bcab1e30738b08">{"x":{"visdat":{"25945b1577d0":["function () ","plotlyVisDat"]},"cur_data":"25945b1577d0","attrs":{"25945b1577d0":{"x":{},"y":{},"mode":"lines+markers","color":{},"colors":["orange","purple"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Gráfico de interacción: tipo de riego × cobertura de suelo","xaxis":{"domain":[0,1],"automargin":true,"title":"Tipo de riego (B)","type":"category","categoryorder":"array","categoryarray":["B1","B2"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Media de crecimiento (mm)"},"legend":{"title":{"text":"Cobertura (C)"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["B1","B2"],"y":[70.555555555555557,73.944444444444443],"mode":"lines+markers","type":"scatter","name":"C1","marker":{"color":"rgba(255,165,0,1)","line":{"color":"rgba(255,165,0,1)"}},"textfont":{"color":"rgba(255,165,0,1)"},"error_y":{"color":"rgba(255,165,0,1)"},"error_x":{"color":"rgba(255,165,0,1)"},"line":{"color":"rgba(255,165,0,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["B1","B2"],"y":[50.388888888888886,57.333333333333336],"mode":"lines+markers","type":"scatter","name":"C2","marker":{"color":"rgba(160,32,240,1)","line":{"color":"rgba(160,32,240,1)"}},"textfont":{"color":"rgba(160,32,240,1)"},"error_y":{"color":"rgba(160,32,240,1)"},"error_x":{"color":"rgba(160,32,240,1)"},"line":{"color":"rgba(160,32,240,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-daa99eef6c565613faaa" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-daa99eef6c565613faaa">{"x":{"visdat":{"163c5e412f28":["function () ","plotlyVisDat"]},"cur_data":"163c5e412f28","attrs":{"163c5e412f28":{"x":{},"y":{},"mode":"lines+markers","color":{},"colors":["orange","purple"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Gráfico de interacción: tipo de riego × cobertura de suelo","xaxis":{"domain":[0,1],"automargin":true,"title":"Tipo de riego (B)","type":"category","categoryorder":"array","categoryarray":["B1","B2"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Media de crecimiento (mm)"},"legend":{"title":{"text":"Cobertura (C)"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["B1","B2"],"y":[70.555555555555557,73.944444444444443],"mode":"lines+markers","type":"scatter","name":"C1","marker":{"color":"rgba(255,165,0,1)","line":{"color":"rgba(255,165,0,1)"}},"textfont":{"color":"rgba(255,165,0,1)"},"error_y":{"color":"rgba(255,165,0,1)"},"error_x":{"color":"rgba(255,165,0,1)"},"line":{"color":"rgba(255,165,0,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["B1","B2"],"y":[50.388888888888886,57.333333333333336],"mode":"lines+markers","type":"scatter","name":"C2","marker":{"color":"rgba(160,32,240,1)","line":{"color":"rgba(160,32,240,1)"}},"textfont":{"color":"rgba(160,32,240,1)"},"error_y":{"color":"rgba(160,32,240,1)"},"error_x":{"color":"rgba(160,32,240,1)"},"line":{"color":"rgba(160,32,240,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p>En el caso de interacciones entre tipo de riego y cobertura de suelo
 no se logra notar una posible interacción entre ellos. Sin embargo, sí
 se puede notar la posible diferencia entre coberturas de suelo en el
@@ -2658,8 +2657,8 @@ crecimiento promedio de cultivo de maravillas.</p>
 <span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a></span>
 <span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a><span class="co"># 3. Muestra el gráfico</span></span>
 <span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a>fig</span></code></pre></div>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-32599cf183bca28333a7" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-32599cf183bca28333a7">{"x":{"visdat":{"2594786f1d14":["function () ","plotlyVisDat"]},"cur_data":"2594786f1d14","attrs":{"2594786f1d14":{"x":{},"y":{},"mode":"lines+markers","color":{},"colors":["orange","purple"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Gráfico de interacción: dosis de fertilizante × cobertura de suelo","xaxis":{"domain":[0,1],"automargin":true,"title":"Dosis de fertilizante (A)","type":"category","categoryorder":"array","categoryarray":["A1","A2","A3"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Media de crecimiento (mm)"},"legend":{"title":{"text":"Cobertura (C)"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["A1","A2","A3"],"y":[71,72,73.75],"mode":"lines+markers","type":"scatter","name":"C1","marker":{"color":"rgba(255,165,0,1)","line":{"color":"rgba(255,165,0,1)"}},"textfont":{"color":"rgba(255,165,0,1)"},"error_y":{"color":"rgba(255,165,0,1)"},"error_x":{"color":"rgba(255,165,0,1)"},"line":{"color":"rgba(255,165,0,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["A1","A2","A3"],"y":[53.916666666666664,54.416666666666664,53.25],"mode":"lines+markers","type":"scatter","name":"C2","marker":{"color":"rgba(160,32,240,1)","line":{"color":"rgba(160,32,240,1)"}},"textfont":{"color":"rgba(160,32,240,1)"},"error_y":{"color":"rgba(160,32,240,1)"},"error_x":{"color":"rgba(160,32,240,1)"},"line":{"color":"rgba(160,32,240,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-0e9714b55e04d7746201" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-0e9714b55e04d7746201">{"x":{"visdat":{"163c5c767df1":["function () ","plotlyVisDat"]},"cur_data":"163c5c767df1","attrs":{"163c5c767df1":{"x":{},"y":{},"mode":"lines+markers","color":{},"colors":["orange","purple"],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"scatter"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Gráfico de interacción: dosis de fertilizante × cobertura de suelo","xaxis":{"domain":[0,1],"automargin":true,"title":"Dosis de fertilizante (A)","type":"category","categoryorder":"array","categoryarray":["A1","A2","A3"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"Media de crecimiento (mm)"},"legend":{"title":{"text":"Cobertura (C)"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["A1","A2","A3"],"y":[71,72,73.75],"mode":"lines+markers","type":"scatter","name":"C1","marker":{"color":"rgba(255,165,0,1)","line":{"color":"rgba(255,165,0,1)"}},"textfont":{"color":"rgba(255,165,0,1)"},"error_y":{"color":"rgba(255,165,0,1)"},"error_x":{"color":"rgba(255,165,0,1)"},"line":{"color":"rgba(255,165,0,1)"},"xaxis":"x","yaxis":"y","frame":null},{"x":["A1","A2","A3"],"y":[53.916666666666664,54.416666666666664,53.25],"mode":"lines+markers","type":"scatter","name":"C2","marker":{"color":"rgba(160,32,240,1)","line":{"color":"rgba(160,32,240,1)"}},"textfont":{"color":"rgba(160,32,240,1)"},"error_y":{"color":"rgba(160,32,240,1)"},"error_x":{"color":"rgba(160,32,240,1)"},"line":{"color":"rgba(160,32,240,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 <p>Ahora, viendo la dosis de fertilizante por cobertura de suelo,
 tampoco se logra notar una posible interacción entre ellos. Sin embargo,
 al igual que el caso anterior, sí se logra notar una posible diferencia
@@ -2677,17 +2676,17 @@ entre coberturas de suelo.</p>
 <span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a></span>
 <span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co"># 3. Resumen de la ANOVA</span></span>
 <span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="fu">summary</span>(modelo_tres_factores)</span></code></pre></div>
-<pre><code>FALSE             Df Sum Sq Mean Sq F value   Pr(&gt;F)    
-FALSE A            2     14       7   0.494   0.6126    
-FALSE B            1    480     480  34.253 2.16e-07 ***
-FALSE C            1   6087    6087 433.905  &lt; 2e-16 ***
-FALSE A:B          2    788     394  28.096 2.45e-09 ***
-FALSE A:C          2     41      20   1.456   0.2412    
-FALSE B:C          1     57      57   4.055   0.0485 *  
-FALSE A:B:C        2     31      16   1.106   0.3375    
-FALSE Residuals   60    842      14                     
-FALSE ---
-FALSE Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre><code>              Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+  A            2     14       7   0.494   0.6126    
+  B            1    480     480  34.253 2.16e-07 ***
+  C            1   6087    6087 433.905  &lt; 2e-16 ***
+  A:B          2    788     394  28.096 2.45e-09 ***
+  A:C          2     41      20   1.456   0.2412    
+  B:C          1     57      57   4.055   0.0485 *  
+  A:B:C        2     31      16   1.106   0.3375    
+  Residuals   60    842      14                     
+  ---
+  Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Viendo la tabla ANOVA podemos notar que con un nivel de significación
 del 0.05 no se rechaza la hipótesis nula para algunos. Es decir, hay
 suficiente evidencia muestral a favor de que los efectos en promedio</p>
@@ -2733,11 +2732,11 @@ definido no provienen desde una distribución normal.</p>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a></span>
 <span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co"># Test de Shapiro–Wilk para normalidad de los residuos</span></span>
 <span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="fu">shapiro.test</span>(res)</span></code></pre></div>
-<pre><code>FALSE 
-FALSE   Shapiro-Wilk normality test
-FALSE 
-FALSE data:  res
-FALSE W = 0.91988, p-value = 0.0002114</code></pre>
+<pre><code>  
+    Shapiro-Wilk normality test
+  
+  data:  res
+  W = 0.91988, p-value = 0.0002114</code></pre>
 <p>Con un nivel de significación del 0.05 se rechaza la hipótesis nula
 de normalidad. Es decir, existe suficiente evidencia muestral para
 afirmar que los residuos del modelo definido no provienen desde una
@@ -2760,12 +2759,12 @@ fertilizante, tipo de riego y cobertura de suelo es distinta.</p>
 <span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="co"># Test de Levene usando la mediana (center = median)</span></span>
 <span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="fu">leveneTest</span>(respuesta <span class="sc">~</span> <span class="fu">interaction</span>(A, B, C), <span class="at">data =</span> datos, <span class="at">center =</span> median)</span></code></pre></div>
-<pre><code>FALSE Levene&#39;s Test for Homogeneity of Variance (center = median)
-FALSE       Df F value  Pr(&gt;F)  
-FALSE group 11   1.807 0.07267 .
-FALSE       60                  
-FALSE ---
-FALSE Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre><code>  Levene&#39;s Test for Homogeneity of Variance (center = median)
+        Df F value  Pr(&gt;F)  
+  group 11   1.807 0.07267 .
+        60                  
+  ---
+  Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>Con un nivel de significación del 0.05 no se rechaza la hipótesis
 nula. Es decir, existe suficiente evidencia muestral a favor de que las
 varianzas de los residuos del modelo definido entre las combinaciones,
@@ -2787,8 +2786,8 @@ iguales.</p>
 <span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>  <span class="at">alpha =</span> <span class="fl">0.05</span></span>
 <span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a>)</span></code></pre></div>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>duncan.B<span class="sc">$</span>comparison</span></code></pre></div>
-<pre><code>FALSE         difference pvalue signif.       LCL       UCL
-FALSE B1 - B2  -5.166667      0     *** -6.932513 -3.400821</code></pre>
+<pre><code>          difference pvalue signif.       LCL       UCL
+  B1 - B2  -5.166667      0     *** -6.932513 -3.400821</code></pre>
 <p>Con un nivel de significación de 0.05 rechazamos la hipótesis nula.
 Es decir, existe suficiente evidencia muestral a favor de que el tipo de
 riego por goteo es menor a tipo de goteo por aspersión en cuanto al
@@ -2805,8 +2804,8 @@ crecimiento promedio de los cultivos de maravilla.</p>
 <span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>  <span class="at">alpha =</span> <span class="fl">0.05</span></span>
 <span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a>)</span></code></pre></div>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>duncan.C<span class="sc">$</span>comparison</span></code></pre></div>
-<pre><code>FALSE         difference pvalue signif.      LCL      UCL
-FALSE C1 - C2   18.38889      0     *** 16.62304 20.15473</code></pre>
+<pre><code>          difference pvalue signif.      LCL      UCL
+  C1 - C2   18.38889      0     *** 16.62304 20.15473</code></pre>
 <p>Con un nivel de significación de 0.05 rechazamos la hipótesis nula.
 Es decir, existe suficiente evidencia muestral a favor de que la
 cobertura de suelo con mulch es mayor a la cobertura de suelo sin mulch
@@ -2826,22 +2825,22 @@ tipos de riego (B)</h2>
 <span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a>  <span class="at">alpha=</span><span class="fl">0.05</span></span>
 <span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a>)</span></code></pre></div>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>duncan.AB<span class="sc">$</span>comparison</span></code></pre></div>
-<pre><code>FALSE               difference pvalue signif.        LCL         UCL
-FALSE A1:B1 - A1:B2   2.083333 0.2043          -1.134164   5.3008310
-FALSE A1:B1 - A2:B1   7.250000 0.0000     ***   3.927632  10.5723678
-FALSE A1:B1 - A2:B2  -6.666667 0.0001     ***  -9.884164  -3.4491690
-FALSE A1:B1 - A3:B1   1.833333 0.2352          -1.225202   4.8918685
-FALSE A1:B1 - A3:B2  -1.833333 0.2352          -4.891868   1.2252018
-FALSE A1:B2 - A2:B1   5.166667 0.0013      **   2.108132   8.2252018
-FALSE A1:B2 - A2:B2  -8.750000 0.0000     *** -12.148660  -5.3513398
-FALSE A1:B2 - A3:B1  -0.250000 0.8707          -3.308535   2.8085351
-FALSE A1:B2 - A3:B2  -3.916667 0.0207       *  -7.239035  -0.5942988
-FALSE A2:B1 - A2:B2 -13.916667 0.0000     *** -17.374113 -10.4592199
-FALSE A2:B1 - A3:B1  -5.416667 0.0011      **  -8.634164  -2.1991690
-FALSE A2:B1 - A3:B2  -9.083333 0.0000     *** -12.481993  -5.6846732
-FALSE A2:B2 - A3:B1   8.500000 0.0000     ***   5.177632  11.8223678
-FALSE A2:B2 - A3:B2   4.833333 0.0025      **   1.774798   7.8918685
-FALSE A3:B1 - A3:B2  -3.666667 0.0256       *  -6.884164  -0.4491690</code></pre>
+<pre><code>                difference pvalue signif.        LCL         UCL
+  A1:B1 - A1:B2   2.083333 0.2043          -1.134164   5.3008310
+  A1:B1 - A2:B1   7.250000 0.0000     ***   3.927632  10.5723678
+  A1:B1 - A2:B2  -6.666667 0.0001     ***  -9.884164  -3.4491690
+  A1:B1 - A3:B1   1.833333 0.2352          -1.225202   4.8918685
+  A1:B1 - A3:B2  -1.833333 0.2352          -4.891868   1.2252018
+  A1:B2 - A2:B1   5.166667 0.0013      **   2.108132   8.2252018
+  A1:B2 - A2:B2  -8.750000 0.0000     *** -12.148660  -5.3513398
+  A1:B2 - A3:B1  -0.250000 0.8707          -3.308535   2.8085351
+  A1:B2 - A3:B2  -3.916667 0.0207       *  -7.239035  -0.5942988
+  A2:B1 - A2:B2 -13.916667 0.0000     *** -17.374113 -10.4592199
+  A2:B1 - A3:B1  -5.416667 0.0011      **  -8.634164  -2.1991690
+  A2:B1 - A3:B2  -9.083333 0.0000     *** -12.481993  -5.6846732
+  A2:B2 - A3:B1   8.500000 0.0000     ***   5.177632  11.8223678
+  A2:B2 - A3:B2   4.833333 0.0025      **   1.774798   7.8918685
+  A3:B1 - A3:B2  -3.666667 0.0256       *  -6.884164  -0.4491690</code></pre>
 <p>Con un nivel de significación del 0.05 no se rechaza la hipótesis
 nula. Es decir, existe suficiente evidencia muestral a favor de que en
 promedio las siguientes interacciones entregan un efecto igual sobre el
@@ -2885,13 +2884,13 @@ coberturas de suelo (C)</h2>
 <span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="co">#    trt = c(&quot;B&quot;,&quot;C&quot;) combina niveles de B y C</span></span>
 <span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>duncan.BC <span class="ot">&lt;-</span> <span class="fu">duncan.test</span>(modelo_tres_factores, <span class="fu">c</span>(<span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>), <span class="at">group =</span> <span class="cn">FALSE</span>, <span class="at">console =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>duncan.BC<span class="sc">$</span>comparison</span></code></pre></div>
-<pre><code>FALSE               difference pvalue signif.        LCL         UCL
-FALSE B1:C1 - B1:C2  20.166667 0.0000     ***  17.539591  22.7937425
-FALSE B1:C1 - B2:C1  -3.388889 0.0087      **  -5.886172  -0.8916054
-FALSE B1:C1 - B2:C2  13.222222 0.0000     ***  10.724939  15.7195057
-FALSE B1:C2 - B2:C1 -23.555556 0.0000     *** -26.268258 -20.8428536
-FALSE B1:C2 - B2:C2  -6.944444 0.0000     ***  -9.441728  -4.4471610
-FALSE B2:C1 - B2:C2  16.611111 0.0000     ***  13.984035  19.2381870</code></pre>
+<pre><code>                difference pvalue signif.        LCL         UCL
+  B1:C1 - B1:C2  20.166667 0.0000     ***  17.539591  22.7937425
+  B1:C1 - B2:C1  -3.388889 0.0087      **  -5.886172  -0.8916054
+  B1:C1 - B2:C2  13.222222 0.0000     ***  10.724939  15.7195057
+  B1:C2 - B2:C1 -23.555556 0.0000     *** -26.268258 -20.8428536
+  B1:C2 - B2:C2  -6.944444 0.0000     ***  -9.441728  -4.4471610
+  B2:C1 - B2:C2  16.611111 0.0000     ***  13.984035  19.2381870</code></pre>
 <p>Con un nivel de significación del 0.05 se rechaza la hipótesis nula.
 Es decir, existe suficiente evidencia muestral a favor de que en
 promedio las siguientes interacciones entregan un mayor o menor sobre el

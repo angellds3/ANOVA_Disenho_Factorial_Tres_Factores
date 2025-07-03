@@ -9,7 +9,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, comment = FALSE, message=" ", warning = FALSE)
+knitr::opts_chunk$set(echo = TRUE, comment = FALSE, message=" ", warning = FALSE, comment=" ")
 ```
 
 # Ejercicio: Crecimiento de cultivo de maravilla
@@ -65,7 +65,7 @@ dim(datos)  # debería ser 72 filas × 6 columnas
 
 ```
 
-# Identificación UE, y todo eso
+# Identificación 
 
 -   **Unidad Experimental:** Cultivo de Maravilla de una parcela.
 
